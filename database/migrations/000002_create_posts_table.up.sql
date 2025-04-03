@@ -1,0 +1,9 @@
+CREATE TABLE posts (
+    id SERIAL PRIMARY KEY,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    deleted_at TIMESTAMPTZ,
+    title VARCHAR(100) NOT NULL,
+    content TEXT NOT NULL,
+    user_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE
+);
