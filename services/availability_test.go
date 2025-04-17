@@ -4,8 +4,8 @@ import (
 	"testing"
 	"time"
 
-	"phrolow/innovative-glamping/models"
-	"phrolow/innovative-glamping/services"
+	"phrolow/innovative_glamping/models"
+	"phrolow/innovative_glamping/services"
 )
 
 func TestCheckAvailability(t *testing.T) {

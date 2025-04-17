@@ -4,7 +4,7 @@ import (
 	"errors"
 	"time"
 
-	"phrolow/innovative-glamping/models"
+	"innovative_glamping/models"
 )
 
 // CheckAvailability checks if a room is available for a given date range

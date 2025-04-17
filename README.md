@@ -1,2 +1,2 @@
-# innovative-glamping
+# innovative_glamping
  Студенческий проект, посвященный написанию бэкенда сайта для глэмпинга

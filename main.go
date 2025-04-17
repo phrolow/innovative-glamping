@@ -5,15 +5,15 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"innovative-glamping/handlers"
-	"innovative-glamping/middleware"
+	"innovative_glamping/handlers"
+	"innovative_glamping/middleware"
 )
 
 func main() {
 	r := mux.NewRouter()
 
 	// Apply error handler middleware
-	r.Use(middleware.ErrorHandler)
+	r.Use(handlers.ErrorHandler)
 
 	// Public Routes
 	r.HandleFunc("/login", handlers.Login).Methods("POST")

@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"innovative-glamping/middleware"
+	"innovative_glamping/middleware"
 )
 
 // LoginRequest represents a login request payload
