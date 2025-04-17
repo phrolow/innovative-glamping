@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 	"strings"
-	"time"
+	"time" // Добавлен импорт пакета time
 
 	"github.com/dgrijalva/jwt-go"
 )

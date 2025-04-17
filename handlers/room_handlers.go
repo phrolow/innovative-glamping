@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"innovative_glamping/models"
 	"innovative_glamping/services"
 	"net/http"
@@ -91,4 +92,32 @@ func BookRoom(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(map[string]string{"message": "Room booked successfully"})
+
+	services.SendNotification(models.Notification{
+		Type:    "Booking",
+		Message: fmt.Sprintf("Room %d has been successfully booked by %s", room.ID, bookingRequest.Customer),
+	})
+}
+
+func CancelBooking(w http.ResponseWriter, r *http.Request) {
+	var cancelRequest struct {
+		ID int `json:"id"`
+	}
+	err := json.NewDecoder(r.Body).Decode(&cancelRequest)
+	if err != nil {
+		http.Error(w, "Invalid request payload", http.StatusBadRequest)
+		return
+	}
+
+	// Find and remove the booking
+	for i, booking := range bookings {
+		if booking.ID == cancelRequest.ID {
+			bookings = append(bookings[:i], bookings[i+1:]...)
+			w.Header().Set("Content-Type", "application/json")
+			json.NewEncoder(w).Encode(map[string]string{"message": "Booking canceled successfully"})
+			return
+		}
+	}
+
+	http.Error(w, "Booking not found", http.StatusNotFound)
 }

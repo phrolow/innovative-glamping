@@ -24,6 +24,7 @@ func main() {
 	protected.HandleFunc("/rooms", handlers.GetRooms).Methods("GET")
 	protected.HandleFunc("/rooms/{id}/availability", handlers.CheckRoomAvailability).Methods("GET")
 	protected.HandleFunc("/rooms/{id}/book", handlers.BookRoom).Methods("POST")
+	protected.HandleFunc("/cancel", handlers.CancelBooking).Methods("POST")
 
 	log.Println("Server running on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", r))
