@@ -10,9 +10,9 @@ import (
 const (
 	host     = "localhost"
 	port     = 5432
-	user     = "yourusername"
-	password = "yourpassword"
-	dbname   = "yourdbname"
+	user     = "postgres"
+	password = "1111"
+	dbname   = "glamping"
 )
 
 // Connect initializes the database connection
