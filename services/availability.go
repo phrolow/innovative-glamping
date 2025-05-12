@@ -2,6 +2,7 @@ package services
 
 import (
 	"errors"
+	"log"
 	"time"
 
 	"innovative_glamping/models"
@@ -42,5 +43,6 @@ func BookRoom(room *models.Room, bookings *[]models.Booking, customer string, st
 	}
 
 	*bookings = append(*bookings, newBooking)
+	log.Println(newBooking.ID)
 	return nil
 }

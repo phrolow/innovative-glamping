@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"innovative_glamping/models"
 	"innovative_glamping/services"
+	"log"
 	"net/http"
 	"strconv"
 	"time"
@@ -101,17 +102,19 @@ func BookRoom(w http.ResponseWriter, r *http.Request) {
 
 func CancelBooking(w http.ResponseWriter, r *http.Request) {
 	var cancelRequest struct {
-		ID int `json:"id"`
+		ID string `json:"id"`
 	}
 	err := json.NewDecoder(r.Body).Decode(&cancelRequest)
 	if err != nil {
 		http.Error(w, "Invalid request payload", http.StatusBadRequest)
 		return
 	}
+	cancelId, _ := strconv.Atoi(cancelRequest.ID)
 
 	// Find and remove the booking
 	for i, booking := range bookings {
-		if booking.ID == cancelRequest.ID {
+		log.Println(booking.ID)
+		if booking.ID == cancelId {
 			bookings = append(bookings[:i], bookings[i+1:]...)
 			w.Header().Set("Content-Type", "application/json")
 			json.NewEncoder(w).Encode(map[string]string{"message": "Booking canceled successfully"})
